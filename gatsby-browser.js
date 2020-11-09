@@ -1,7 +1,13 @@
 /**
  * Implement Gatsby's Browser APIs in this file.
  *
- * See: https://www.gatsbyjs.com/docs/browser-apis/
+ * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
+import React from "react"
+import { ChakraProvider } from "@chakra-ui/core"
 
-// You can delete this file if you're not using it
+import theme from "./theme"
+
+export const wrapRootElement = ({ element }) => (
+  <ChakraProvider theme={theme}>{element}</ChakraProvider>
+)
