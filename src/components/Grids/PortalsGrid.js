@@ -1,67 +1,81 @@
 import React from "react"
-
-import { Box, Grid, Flex, Heading, Button } from "@chakra-ui/core"
+import { useStaticQuery, graphql } from "gatsby"
+import { Box, Grid, Flex, Heading, Button, Link } from "@chakra-ui/core"
 
 const PortalsGrid = () => {
+  const types = useStaticQuery(graphql`
+    query GetCommunityTypes {
+      wpgraphql {
+        communityTypes {
+          edges {
+            node {
+              communityTypeMeta {
+                typeImage {
+                  guid
+                  imageFile {
+                    childImageSharp {
+                      fluid(maxWidth: 636, maxHeight: 550, quality: 100) {
+                        ...GatsbyImageSharpFluid
+                        ...GatsbyImageSharpFluidLimitPresentationSize
+                      }
+                    }
+                  }
+                }
+              }
+              id
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+  `)
+
   return (
-    <Box as="section" py={16}>
-      <Grid
-        gridTemplateColumns={["", "", "", "repeat(3,1fr)"]}
-        gap={[0, 0, 0, 2]}
-      >
-        <Flex
-          flexDirection="column"
-          flexWrap="wrap"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Heading as="h4">Vacation Rentals</Heading>
-          <Button
-            mt={4}
-            color="white"
-            textTransform="uppercase"
-            bg="primary.2"
-            borderRadius={0}
+    <>
+      {types.wpgraphql.communityTypes && (
+        <Box as="section">
+          <Grid
+            gridTemplateColumns={["", "", "", "repeat(3,1fr)"]}
+            gap={[0, 0, 0, 2]}
           >
-            More Info
-          </Button>
-        </Flex>
-        <Flex
-          flexDirection="column"
-          flexWrap="wrap"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Heading as="h4">Homes for Sale</Heading>
-          <Button
-            mt={4}
-            color="white"
-            textTransform="uppercase"
-            bg="primary.2"
-            borderRadius={0}
-          >
-            Home Listings
-          </Button>
-        </Flex>
-        <Flex
-          flexDirection="column"
-          flexWrap="wrap"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Heading as="h4">RV Lots for Sale</Heading>
-          <Button
-            mt={4}
-            color="white"
-            textTransform="uppercase"
-            bg="primary.2"
-            borderRadius={0}
-          >
-            Lot Listings
-          </Button>
-        </Flex>
-      </Grid>
-    </Box>
+            {types.wpgraphql.communityTypes.edges.map(type => {
+              const { communityTypeMeta, id, name, slug } = type.node
+
+              return (
+                <Flex
+                  flexDirection="column"
+                  flexWrap="wrap"
+                  alignItems="center"
+                  justifyContent="center"
+                  py={40}
+                  bg="gray.50"
+                  bgImage={`url(${communityTypeMeta.typeImage.imageFile.childImageSharp.fluid.src})`}
+                  bgPosition="center"
+                  bgRepeat="no-repeat"
+                  bgSize="cover"
+                  key={id}
+                >
+                  <Heading as="h4" color="white">
+                    {name}
+                  </Heading>
+                  <Button
+                    mt={4}
+                    color="white"
+                    textTransform="uppercase"
+                    bg="primary.2"
+                    borderRadius={0}
+                  >
+                    <Link href={`/resorts/${slug}`}>{name}</Link>
+                  </Button>
+                </Flex>
+              )
+            })}
+          </Grid>
+        </Box>
+      )}
+    </>
   )
 }
 

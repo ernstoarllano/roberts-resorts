@@ -17,8 +17,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         communities {
           edges {
             node {
+              childCommunities {
+                edges {
+                  node {
+                    id
+                    slug
+                    title
+                  }
+                }
+              }
               id
               slug
+              title
             }
           }
         }
@@ -42,7 +52,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const resortTypes = result.data.wpgraphql.communityTypes.edges
 
   resorts.forEach(resort => {
-    const { slug, id } = resort.node
+    const { childCommunities, id, slug } = resort.node
 
     createPage({
       path: `/resort/${slug}`,

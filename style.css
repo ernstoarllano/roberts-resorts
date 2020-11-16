@@ -1,0 +1,24 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1023px) {
+  .cms-content h1 {
+    font-size: 35px;
+  }
+}
+
+.hero-content {
+  color: #fff;
+}
