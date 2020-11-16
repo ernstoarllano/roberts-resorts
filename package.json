@@ -5,8 +5,11 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "@chakra-ui/core": "^1.0.0-rc.5",
+    "@chakra-ui/react": "^1.0.0",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
     "fontsource-metropolis": "^3.0.1",
+    "framer-motion": "^2.9.4",
     "gatsby": "^2.24.79",
     "gatsby-image": "^2.5.0",
     "gatsby-plugin-manifest": "^2.4.34",

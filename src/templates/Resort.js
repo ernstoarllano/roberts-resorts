@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Box, Heading } from "@chakra-ui/core"
+import { Box, Heading } from "@chakra-ui/react"
 
 import Header from "../components/Header"
 import Hero from "../components/Hero"

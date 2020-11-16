@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { Box, List, ListItem } from "@chakra-ui/core"
+import { Box, List, ListItem } from "@chakra-ui/react"
 
 const Nav = () => {
   const navItems = useStaticQuery(graphql`

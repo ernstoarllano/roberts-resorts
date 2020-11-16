@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Link, Flex } from "@chakra-ui/core"
+import { Box, Link, Flex } from "@chakra-ui/react"
 
 import Container from "./Container"
 import Logo from "./Icons/Logo"

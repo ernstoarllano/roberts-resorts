@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { Box, Grid, Flex, Heading, Button, Link } from "@chakra-ui/core"
+import { Box, Grid, Flex, Heading, Button, Link } from "@chakra-ui/react"
 
 const PortalsGrid = () => {
   const types = useStaticQuery(graphql`

@@ -7,7 +7,7 @@ import {
   Button,
   Link,
   Flex,
-} from "@chakra-ui/core"
+} from "@chakra-ui/react"
 import Img from "gatsby-image"
 
 import Container from "../Container"

@@ -1,6 +1,6 @@
 import React from "react"
 import { useMediaQuery } from "react-responsive"
-import { Box } from "@chakra-ui/core"
+import { Box } from "@chakra-ui/react"
 
 const Hero = ({ mobile, desktop, content }) => {
   const isDesktop = useMediaQuery({ query: "(min-device-width: 1024px)" })
