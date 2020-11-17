@@ -19,7 +19,6 @@ const ResortsGrid = () => {
       wpgraphql {
         page(id: "cGFnZToyMA==") {
           title
-          content
         }
         communityParents {
           edges {
@@ -55,16 +54,7 @@ const ResortsGrid = () => {
     <>
       {resorts.wpgraphql.communityParents && (
         <Box as="section" py={16} bg="gray.100">
-          <Container maxW="1400px">
-            <Box textAlign="center">
-              <Box
-                className="cms-content"
-                dangerouslySetInnerHTML={{
-                  __html: resorts.wpgraphql.page.content,
-                }}
-              />
-            </Box>
-          </Container>
+          <Container maxW="1400px"></Container>
           <Container>
             <Grid
               templateColumns={["", "", "", "repeat(4,1fr)"]}
@@ -87,7 +77,7 @@ const ResortsGrid = () => {
                 } = resort.node
 
                 return (
-                  <Box key={slug} bg="white" boxShadow="md">
+                  <Box key={slug} mb={[5, 5, 5, 0]} bg="white" boxShadow="md">
                     {featuredImage.imageFile && (
                       <Img
                         fluid={featuredImage.imageFile.childImageSharp.fluid}

@@ -14,7 +14,7 @@ const HeroResort = ({ resort }) => {
         <Box
           as="section"
           position="relative"
-          py={56}
+          py={[16, 16, 16, 56]}
           bg={`url(${
             isDesktop
               ? resort.heroMeta.heroImage.imageFile.childImageSharp.desktop.src
@@ -35,9 +35,9 @@ const HeroResort = ({ resort }) => {
               {resort.name}
             </Heading>
             <Flex
-              direction="row"
+              direction={["column", "column", "column", "row"]}
               alignItems="center"
-              justifyContent="center"
+              justifyContent={["", "", "", "center"]}
               mt={4}
               color="white"
             >
@@ -67,7 +67,9 @@ const HeroResort = ({ resort }) => {
               )}
             </Flex>
           </Container>
-          <BookResort slug={resort.communityParentMeta.campspotSlug} />
+          {isDesktop && (
+            <BookResort slug={resort.communityParentMeta.campspotSlug} />
+          )}
         </Box>
       )}
     </>

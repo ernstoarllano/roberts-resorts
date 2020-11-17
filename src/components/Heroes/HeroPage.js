@@ -2,6 +2,7 @@ import React from "react"
 import { useMediaQuery } from "react-responsive"
 import { Box } from "@chakra-ui/react"
 
+import Container from "../Container"
 import BookResorts from "../Forms/BookResorts"
 
 const HeroPage = ({ mobile, desktop, content }) => {
@@ -11,20 +12,22 @@ const HeroPage = ({ mobile, desktop, content }) => {
   return (
     <Box
       as="section"
-      py={56}
+      py={[16, 16, 16, 56]}
       bg={`url(${bgImage})`}
       bgPosition="center"
       bgRepeat="no-repeat"
       bgSize="cover"
     >
-      <Box textAlign="center">
-        <Box
-          className="cms-content hero-content"
-          dangerouslySetInnerHTML={{
-            __html: content,
-          }}
-        />
-      </Box>
+      <Container>
+        <Box textAlign="center">
+          <Box
+            className="cms-content hero-content"
+            dangerouslySetInnerHTML={{
+              __html: content,
+            }}
+          />
+        </Box>
+      </Container>
       <BookResorts />
     </Box>
   )

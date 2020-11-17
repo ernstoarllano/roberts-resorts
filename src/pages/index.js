@@ -14,6 +14,32 @@ const IndexPage = () => {
     query GetHome {
       wpgraphql {
         page(id: "cGFnZToyMA==") {
+          content
+          pageMeta {
+            introImage {
+              guid
+              imageFile {
+                childImageSharp {
+                  introMobile: fluid(
+                    maxWidth: 960
+                    maxHeight: 663
+                    quality: 100
+                  ) {
+                    ...GatsbyImageSharpFluid
+                    ...GatsbyImageSharpFluidLimitPresentationSize
+                  }
+                  introDesktop: fluid(
+                    maxWidth: 1920
+                    maxHeight: 663
+                    quality: 100
+                  ) {
+                    ...GatsbyImageSharpFluid
+                    ...GatsbyImageSharpFluidLimitPresentationSize
+                  }
+                }
+              }
+            }
+          }
           heroMeta {
             heroContent
             heroImage {
@@ -52,7 +78,12 @@ const IndexPage = () => {
         desktop={desktop.src}
         content={heroContent}
       />
-      <Intro />
+      <Intro
+        content={home.wpgraphql.page.content}
+        image={
+          home.wpgraphql.page.pageMeta.introImage.imageFile.childImageSharp
+        }
+      />
       <ResortsGrid />
       <PortalsGrid />
       <ResortsMap />

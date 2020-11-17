@@ -1,3 +1,10 @@
+:root {
+  --primary1: #232f40;
+  --primary2: #fe9c02;
+  --primary3: #496387;
+  --primary4: #355563;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -21,4 +28,8 @@ img {
 
 .hero-content {
   color: #fff;
+}
+
+.hero-content h1 {
+  color: currentColor;
 }

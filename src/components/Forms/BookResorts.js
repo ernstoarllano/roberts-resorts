@@ -7,7 +7,7 @@ import {
   FormLabel,
   Select,
   Input,
-  ButtonGroup,
+  Stack,
   Button,
 } from "@chakra-ui/react"
 
@@ -35,20 +35,13 @@ const BookResorts = () => {
   const onSubmit = e => {
     e.preventDefault()
 
-    console.log(
-      e.target["resort"].value,
-      e.target["checkIn"].value,
-      e.target["checkOut"].value
-    )
-
     const resort = e.target["resort"].value
     const checkIn = e.target["checkIn"].value
     const checkOut = e.target["checkOut"].value
     const adults = e.target["adults"].value
 
     window.open(
-      `https://www.campspot.com/book/${resort}/search/${checkIn}
-      /${checkOut}/guests${adults},0,0`
+      `https://www.campspot.com/book/${resort}/search/${checkIn}/${checkOut}/guests${adults},0,0`
     )
   }
 
@@ -62,7 +55,7 @@ const BookResorts = () => {
           justifyContent={["", "", "", "space-between"]}
         >
           {resorts.wpgraphql.communityParents && (
-            <FormControl>
+            <FormControl mb={2}>
               <FormLabel
                 mb={0}
                 fontWeight="600"
@@ -77,6 +70,7 @@ const BookResorts = () => {
                 name="resort"
                 bg="white"
                 borderRadius={0}
+                isRequired={true}
               >
                 {resorts.wpgraphql.communityParents.edges.map(resort => {
                   const {
@@ -94,7 +88,7 @@ const BookResorts = () => {
               </Select>
             </FormControl>
           )}
-          <FormControl mx={[0, 0, 0, 3]}>
+          <FormControl mb={2} mx={[0, 0, 0, 3]}>
             <FormLabel
               mb={0}
               fontWeight="600"
@@ -104,9 +98,15 @@ const BookResorts = () => {
             >
               Check-In
             </FormLabel>
-            <Input type="date" name="checkIn" bg="white" borderRadius={0} />
+            <Input
+              type="date"
+              name="checkIn"
+              bg="white"
+              borderRadius={0}
+              isRequired={true}
+            />
           </FormControl>
-          <FormControl mr={[0, 0, 0, 3]} textTransform="uppercase">
+          <FormControl mb={2} mr={[0, 0, 0, 3]} textTransform="uppercase">
             <FormLabel
               mb={0}
               fontWeight="600"
@@ -115,9 +115,15 @@ const BookResorts = () => {
             >
               Check-Out
             </FormLabel>
-            <Input type="date" name="checkOut" bg="white" borderRadius={0} />
+            <Input
+              type="date"
+              name="checkOut"
+              bg="white"
+              borderRadius={0}
+              isRequired={true}
+            />
           </FormControl>
-          <FormControl>
+          <FormControl mb={2}>
             <FormLabel
               mb={0}
               fontWeight="600"
@@ -132,6 +138,7 @@ const BookResorts = () => {
               name="adults"
               bg="white"
               borderRadius={0}
+              isRequired={true}
             >
               <option value="2">2</option>
             </Select>
@@ -144,9 +151,9 @@ const BookResorts = () => {
           justifyContent="center"
           mt={5}
         >
-          <ButtonGroup>
+          <Stack direction={["column", "column", "column", "row"]}>
             <Button
-              minW={["", "", "", "270px"]}
+              minW={["full", "full", "full", "270px"]}
               fontWeight="600"
               color="white"
               textTransform="uppercase"
@@ -168,7 +175,7 @@ const BookResorts = () => {
             >
               Reserve Now
             </Button>
-          </ButtonGroup>
+          </Stack>
         </Flex>
       </Box>
     </Container>

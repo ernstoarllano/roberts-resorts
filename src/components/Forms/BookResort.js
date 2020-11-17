@@ -21,15 +21,14 @@ const BookResort = ({ slug }) => {
     const adults = e.target["adults"].value
 
     window.open(
-      `https://www.campspot.com/book/${slug}/search/${checkIn}
-      /${checkOut}/guests${adults},0,0`
+      `https://www.campspot.com/book/${slug}/search/${checkIn}/${checkOut}/guests${adults},0,0`
     )
   }
 
   return (
     <Box
       as="form"
-      position="absolute"
+      position={["relative", "relative", "relative", "absolute"]}
       bottom={0}
       left={0}
       right={0}
@@ -47,7 +46,10 @@ const BookResort = ({ slug }) => {
           <Heading as="h6" fontSize="21px" color="white">
             Book Your Site:
           </Heading>
-          <FormControl maxW={[0, 0, 0, "200px"]} ml={[0, 0, 0, 3]}>
+          <FormControl
+            maxW={["full", "full", "full", "200px"]}
+            ml={[0, 0, 0, 3]}
+          >
             <FormLabel
               mb={0}
               fontWeight="600"
@@ -59,7 +61,10 @@ const BookResort = ({ slug }) => {
             </FormLabel>
             <Input type="date" name="checkIn" bg="white" borderRadius={0} />
           </FormControl>
-          <FormControl maxW={[0, 0, 0, "200px"]} mx={[0, 0, 0, 3]}>
+          <FormControl
+            maxW={["full", "full", "full", "200px"]}
+            mx={[0, 0, 0, 3]}
+          >
             <FormLabel
               mb={0}
               fontWeight="600"
@@ -71,7 +76,10 @@ const BookResort = ({ slug }) => {
             </FormLabel>
             <Input type="date" name="checkOut" bg="white" borderRadius={0} />
           </FormControl>
-          <FormControl maxW={[0, 0, 0, "200px"]} mr={[0, 0, 0, 3]}>
+          <FormControl
+            maxW={["full", "full", "full", "200px"]}
+            mr={[0, 0, 0, 3]}
+          >
             <FormLabel
               mb={0}
               fontWeight="600"
@@ -92,6 +100,7 @@ const BookResort = ({ slug }) => {
           </FormControl>
           <Button
             type="submit"
+            mt={[5, 5, 5, 0]}
             fontWeight="600"
             color="white"
             textTransform="uppercase"
