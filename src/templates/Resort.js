@@ -1,52 +1,40 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Box, Heading } from "@chakra-ui/react"
 
 import Header from "../components/Header"
-import Hero from "../components/Hero"
-import Container from "../components/Container"
+import HeroResort from "../components/Heroes/HeroResort"
+import ResortTypesGrid from "../components/Grids/ResortTypesGrid"
 import Footer from "../components/Footer"
 
 const Resort = ({
   data: {
-    wpgraphql: { community },
+    wpgraphql: { communityParent, communityTypes },
   },
 }) => {
-  const { heroContent } = community.heroMeta
-
-  const {
-    mobile,
-    desktop,
-  } = community.heroMeta.heroImage.imageFile.childImageSharp
-
   return (
     <>
       <Header />
-      <Hero mobile={mobile.src} desktop={desktop.src} content={heroContent} />
-      <Box as="main">
-        <Container>
-          <Box as="section">
-            <Heading as="h1">{community.title}</Heading>
-          </Box>
-          <Box as="section"></Box>
-          <Box as="aside"></Box>
-        </Container>
-      </Box>
+      <HeroResort resort={communityParent} />
+      <ResortTypesGrid types={communityTypes} resort={communityParent} />
       <Footer />
     </>
   )
 }
 
 export const query = graphql`
-  query GetCommunity($id: ID!) {
+  query GetCommunityType($id: ID!) {
     wpgraphql {
-      community(id: $id) {
-        content
-        id
+      communityParent(id: $id, idType: DATABASE_ID) {
+        databaseId
+        name
         slug
-        title
+        communityParentMeta {
+          campspotSlug
+          frontDesk
+          homeRentals
+          homeSales
+        }
         heroMeta {
-          heroContent
           heroImage {
             guid
             imageFile {
@@ -58,6 +46,27 @@ export const query = graphql`
                 desktop: fluid(maxWidth: 1920, maxHeight: 825, quality: 100) {
                   ...GatsbyImageSharpFluid
                   ...GatsbyImageSharpFluidLimitPresentationSize
+                }
+              }
+            }
+          }
+        }
+      }
+      communityTypes {
+        edges {
+          node {
+            name
+            slug
+            communityTypeMeta {
+              typeImage {
+                guid
+                imageFile {
+                  childImageSharp {
+                    fluid(maxWidth: 636, maxHeight: 550, quality: 100) {
+                      ...GatsbyImageSharpFluid
+                      ...GatsbyImageSharpFluidLimitPresentationSize
+                    }
+                  }
                 }
               }
             }

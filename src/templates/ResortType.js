@@ -1,114 +1,66 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Box, Heading, Grid, ButtonGroup, Button, Link } from "@chakra-ui/react"
 
 import Header from "../components/Header"
-import Container from "../components/Container"
+import HeroResort from "../components/Heroes/HeroResort"
+import CommunitiesGrid from "../components/Grids/CommunitiesGrid"
 import Footer from "../components/Footer"
 
-const ResortType = ({
+const Resort = ({
   data: {
-    wpgraphql: { communityType },
+    wpgraphql: { communities, communityParent },
   },
+  pageContext: { resortSlug, resortTypeSlug },
 }) => {
   return (
     <>
       <Header />
-      <Box as="main">
-        <Container>
-          <Box as="section">
-            <Heading as="h1">{communityType.name}</Heading>
-            {communityType.communities.edges && (
-              <Grid
-                templateColumns={["", "", "", "repeat(4,1fr)"]}
-                gap={[0, 0, 0, 4]}
-                mt={14}
-                mb={16}
-              >
-                {communityType.communities.edges.map(resort => {
-                  const {
-                    id,
-                    title,
-                    communityMeta: { campspotSlug },
-                    age,
-                    city,
-                    state,
-                    slug,
-                  } = resort.node
-
-                  return (
-                    <Box key={id} bg="white" boxShadow="md">
-                      <Box></Box>
-                      <Box px={5} py={10}>
-                        <Box
-                          as="span"
-                          px={8}
-                          py={2}
-                          color="white"
-                          textTransform="uppercase"
-                          bg="primary.3"
-                        >
-                          {age[0].name}
-                        </Box>
-                        <Heading as="h4">{title}</Heading>
-                        <Box as="span" display="block">
-                          {city[0].name}, {state[0].name}
-                        </Box>
-                        <ButtonGroup mt={3} spacing={4}>
-                          <Button
-                            color="white"
-                            textTransform="uppercase"
-                            bg="primary.1"
-                            borderRadius={0}
-                          >
-                            <Link href={`/resort/${slug}`}>View Resort</Link>
-                          </Button>
-                          {campspotSlug && (
-                            <Button
-                              color="white"
-                              textTransform="uppercase"
-                              bg="primary.2"
-                              borderRadius={0}
-                            >
-                              <Link
-                                href={`https://www.campspot.com/book/${campspotSlug}`}
-                                isExternal
-                              >
-                                Book Now
-                              </Link>
-                            </Button>
-                          )}
-                        </ButtonGroup>
-                      </Box>
-                    </Box>
-                  )
-                })}
-              </Grid>
-            )}
-          </Box>
-        </Container>
-      </Box>
+      <HeroResort resort={communityParent} />
+      <CommunitiesGrid
+        types={communities}
+        resortSlug={resortSlug}
+        typeSlug={resortTypeSlug}
+      />
       <Footer />
     </>
   )
 }
 
 export const query = graphql`
-  query GetCommunityType($id: ID!) {
+  query GetResortType(
+    $id: ID!
+    $resortSlug: [String!]!
+    $resortTypeSlug: [String!]!
+  ) {
     wpgraphql {
-      communityType(id: $id) {
-        id
-        name
-        communities(first: 21) {
-          edges {
-            node {
-              id
-              slug
-              title
-              communityMeta {
-                campspotSlug
+      communities(
+        where: {
+          taxQuery: {
+            relation: AND
+            taxArray: [
+              {
+                terms: $resortSlug
+                operator: IN
+                field: SLUG
+                taxonomy: COMMUNITYPARENT
               }
-              featuredImage {
+              {
+                terms: $resortTypeSlug
+                operator: IN
+                field: SLUG
+                taxonomy: COMMUNITYTYPE
+              }
+            ]
+          }
+        }
+      ) {
+        edges {
+          node {
+            databaseId
+            slug
+            title
+            featuredImage {
+              node {
                 guid
                 imageFile {
                   childImageSharp {
@@ -119,14 +71,31 @@ export const query = graphql`
                   }
                 }
               }
-              city: terms {
-                ... on WPGraphQL_CommunityCity {
-                  name
+            }
+          }
+        }
+      }
+      communityParent(id: $id, idType: DATABASE_ID) {
+        name
+        slug
+        communityParentMeta {
+          frontDesk
+          homeRentals
+          homeSales
+          campspotSlug
+        }
+        heroMeta {
+          heroImage {
+            guid
+            imageFile {
+              childImageSharp {
+                mobile: fluid(maxWidth: 960, maxHeight: 825, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluidLimitPresentationSize
                 }
-              }
-              state: terms {
-                ... on WPGraphQL_CommunityState {
-                  name
+                desktop: fluid(maxWidth: 1920, maxHeight: 825, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluidLimitPresentationSize
                 }
               }
             }
@@ -137,4 +106,4 @@ export const query = graphql`
   }
 `
 
-export default ResortType
+export default Resort

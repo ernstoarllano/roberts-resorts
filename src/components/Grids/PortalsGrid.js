@@ -57,7 +57,7 @@ const PortalsGrid = () => {
                   bgSize="cover"
                   key={id}
                 >
-                  <Heading as="h4" color="white">
+                  <Heading as="h4" color="white" textTransform="uppercase">
                     {name}
                   </Heading>
                   <Button
@@ -67,7 +67,7 @@ const PortalsGrid = () => {
                     bg="primary.2"
                     borderRadius={0}
                   >
-                    <Link href={`/resorts/${slug}`}>{name}</Link>
+                    <Link href={`/${slug}`}>{name}</Link>
                   </Button>
                 </Flex>
               )

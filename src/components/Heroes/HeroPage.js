@@ -2,7 +2,9 @@ import React from "react"
 import { useMediaQuery } from "react-responsive"
 import { Box } from "@chakra-ui/react"
 
-const Hero = ({ mobile, desktop, content }) => {
+import BookResorts from "../Forms/BookResorts"
+
+const HeroPage = ({ mobile, desktop, content }) => {
   const isDesktop = useMediaQuery({ query: "(min-device-width: 1024px)" })
   const bgImage = isDesktop ? desktop : mobile
 
@@ -23,8 +25,9 @@ const Hero = ({ mobile, desktop, content }) => {
           }}
         />
       </Box>
+      <BookResorts />
     </Box>
   )
 }
 
-export default Hero
+export default HeroPage

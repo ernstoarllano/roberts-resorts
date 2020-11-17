@@ -5,7 +5,7 @@
  */
 import React from "react"
 import { ChakraProvider } from "@chakra-ui/react"
-import "fontsource-metropolis"
+import "fontsource-metropolis/all.css"
 
 import theme from "./theme"
 import "./style.css"

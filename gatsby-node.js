@@ -9,6 +9,7 @@ const { createRemoteFileNode } = require("gatsby-source-filesystem")
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
+  const communityTemplate = path.resolve("./src/templates/Community.js")
   const resortTemplate = path.resolve("./src/templates/Resort.js")
   const resortTypeTemplate = path.resolve("./src/templates/ResortType.js")
   const result = await graphql(`
@@ -17,25 +18,25 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         communities {
           edges {
             node {
-              childCommunities {
-                edges {
-                  node {
-                    id
-                    slug
-                    title
-                  }
-                }
-              }
-              id
+              databaseId
               slug
               title
+            }
+          }
+        }
+        communityParents {
+          edges {
+            node {
+              databaseId
+              name
+              slug
             }
           }
         }
         communityTypes {
           edges {
             node {
-              id
+              databaseId
               slug
             }
           }
@@ -48,30 +49,48 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panicOnBuild("Error while running GraphQL query.")
   }
 
-  const resorts = result.data.wpgraphql.communities.edges
+  const resorts = result.data.wpgraphql.communityParents.edges
   const resortTypes = result.data.wpgraphql.communityTypes.edges
+  const communities = result.data.wpgraphql.communities.edges
 
   resorts.forEach(resort => {
-    const { childCommunities, id, slug } = resort.node
+    const { databaseId, slug: resortSlug } = resort.node
 
     createPage({
-      path: `/resort/${slug}`,
+      path: `/resort/${resortSlug}`,
       component: resortTemplate,
       context: {
-        id: id,
+        id: databaseId,
       },
     })
-  })
 
-  resortTypes.forEach(resortType => {
-    const { slug, id } = resortType.node
+    resortTypes.forEach(resortType => {
+      const { slug: resortTypeSlug } = resortType.node
 
-    createPage({
-      path: `/resorts/${slug}`,
-      component: resortTypeTemplate,
-      context: {
-        id: id,
-      },
+      createPage({
+        path: `/resort/${resortSlug}/${resortTypeSlug}`,
+        component: resortTypeTemplate,
+        context: {
+          id: databaseId,
+          resortSlug: resortSlug,
+          resortTypeSlug: resortTypeSlug,
+        },
+      })
+
+      communities.forEach(community => {
+        const {
+          databaseId: communityDatabaseId,
+          slug: communitySlug,
+        } = community.node
+
+        createPage({
+          path: `/resort/${resortSlug}/${resortTypeSlug}/${communitySlug}`,
+          component: communityTemplate,
+          context: {
+            id: communityDatabaseId,
+          },
+        })
+      })
     })
   })
 }

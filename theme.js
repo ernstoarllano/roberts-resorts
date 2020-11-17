@@ -18,10 +18,12 @@ const theme = extendTheme({
       h1: {
         fontSize: 45,
         fontWeight: 800,
+        textTransform: "uppercase",
       },
       h2: {
         fontSize: 40,
         fontWeight: 800,
+        textTransform: "uppercase",
       },
       h3: {
         fontSize: 35,
@@ -38,6 +40,7 @@ const theme = extendTheme({
       h6: {
         fontSize: 21,
         fontWeight: 800,
+        textTransform: "uppercase",
       },
       p: {
         fontSize: 21,
