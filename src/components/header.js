@@ -31,10 +31,21 @@ const Header = () => {
           <Flex justifyContent={["center", "center", "center", "flex-end"]}>
             {isDesktop ? (
               <>
-                <Link href="#" color="white">
+                <Link
+                  href="#"
+                  fontSize="14px"
+                  color="white"
+                  textTransform="uppercase"
+                >
                   Find a Resort
                 </Link>
-                <Link href="#" ml={4} color="white">
+                <Link
+                  href="#"
+                  ml={6}
+                  fontSize="14px"
+                  color="white"
+                  textTransform="uppercase"
+                >
                   The Roberts Difference
                 </Link>
               </>

@@ -5,7 +5,7 @@ const ResortTypesGrid = ({ types, resort }) => {
   return (
     <Grid
       gridTemplateColumns={["", "", "", "repeat(3,1fr)"]}
-      gap={[0, 0, 0, 2]}
+      gap={[0, 0, 0, 1]}
     >
       {types.edges.map(type => {
         const { communityTypeMeta, name, slug } = type.node

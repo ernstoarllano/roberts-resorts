@@ -54,6 +54,11 @@ const theme = extendTheme({
       p: {
         fontSize: 21,
       },
+      a: {
+        _hover: {
+          textDecoration: "none !important",
+        },
+      },
     },
   },
 })

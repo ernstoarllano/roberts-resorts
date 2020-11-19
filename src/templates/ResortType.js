@@ -59,12 +59,21 @@ export const query = graphql`
             databaseId
             slug
             title
+            communityMeta {
+              address
+              agent
+              bathrooms
+              bedrooms
+              lotNumber
+              price
+              squareFootage
+            }
             featuredImage {
               node {
                 guid
                 imageFile {
                   childImageSharp {
-                    fluid(maxWidth: 732, maxHeight: 400, quality: 100) {
+                    fluid(maxWidth: 970, maxHeight: 530, quality: 100) {
                       ...GatsbyImageSharpFluid
                       ...GatsbyImageSharpFluidLimitPresentationSize
                     }

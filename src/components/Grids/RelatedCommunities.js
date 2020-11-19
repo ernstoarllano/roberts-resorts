@@ -4,25 +4,31 @@ import Img from "gatsby-image"
 
 import Container from "../Container"
 
-const CommunitiesGrid = ({ types, resortSlug, typeSlug }) => {
+const RelatedCommunities = ({ communities, resortSlug, typeSlug }) => {
+  console.log(resortSlug, typeSlug)
+
   return (
-    <Box as="section" py={16}>
+    <Box as="section" py={16} bg="gray.50">
       <Container>
+        <Box textAlign="center">
+          <Heading as="h1">You May Also Like</Heading>
+        </Box>
         <Grid
           gridTemplateColumns={["", "", "", "repeat(3,1fr)"]}
           gap={[0, 0, 0, 4]}
+          mt={16}
         >
-          {types.edges.map(type => {
-            const { title, slug } = type.node
+          {communities.edges.map(community => {
+            const { title, slug } = community.node
 
             return (
               <Box key={slug} bg="white" boxShadow="md">
-                {type.node.featuredImage && (
+                {community.node.featuredImage && (
                   <Box position="relative">
                     <Img
                       fluid={
-                        type.node.featuredImage.node.imageFile.childImageSharp
-                          .fluid
+                        community.node.featuredImage.node.imageFile
+                          .childImageSharp.fluid
                       }
                     />
                   </Box>
@@ -34,28 +40,28 @@ const CommunitiesGrid = ({ types, resortSlug, typeSlug }) => {
                     alignItems="center"
                     textTransform="uppercase"
                   >
-                    {type.node.communityMeta.price && (
-                      <Box as="span">${type.node.communityMeta.price}</Box>
+                    {community.node.communityMeta.price && (
+                      <Box as="span">${community.node.communityMeta.price}</Box>
                     )}
-                    {type.node.communityMeta.bedrooms &&
-                      type.node.communityMeta.bathrooms && (
+                    {community.node.communityMeta.bedrooms &&
+                      community.node.communityMeta.bathrooms && (
                         <Box as="span" mx={3}>
                           |
                           <Box as="span" pl={3}>
-                            {type.node.communityMeta.bedrooms} BR
+                            {community.node.communityMeta.bedrooms} BR
                           </Box>
                           <Box as="span" mx={1}>
                             /
                           </Box>
                           <Box as="span" pr={3}>
-                            {type.node.communityMeta.bathrooms} BA
+                            {community.node.communityMeta.bathrooms} BA
                           </Box>
                           |
                         </Box>
                       )}
-                    {type.node.communityMeta.lotNumber && (
+                    {community.node.communityMeta.lotNumber && (
                       <Box as="span">
-                        Lot #{type.node.communityMeta.lotNumber}
+                        Lot #{community.node.communityMeta.lotNumber}
                       </Box>
                     )}
                   </Flex>
@@ -81,4 +87,4 @@ const CommunitiesGrid = ({ types, resortSlug, typeSlug }) => {
   )
 }
 
-export default CommunitiesGrid
+export default RelatedCommunities

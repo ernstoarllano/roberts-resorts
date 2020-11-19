@@ -38,7 +38,7 @@ const PortalsGrid = () => {
         <Box as="section">
           <Grid
             gridTemplateColumns={["", "", "", "repeat(3,1fr)"]}
-            gap={[0, 0, 0, 2]}
+            gap={[0, 0, 0, 1]}
           >
             {types.wpgraphql.communityTypes.edges.map(type => {
               const { communityTypeMeta, id, name, slug } = type.node

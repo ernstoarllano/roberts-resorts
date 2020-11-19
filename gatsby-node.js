@@ -88,6 +88,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           component: communityTemplate,
           context: {
             id: communityDatabaseId,
+            currentID: communityDatabaseId,
+            resortSlug: resortSlug,
+            resortTypeSlug: resortTypeSlug,
           },
         })
       })
