@@ -6,6 +6,7 @@ import Header from "../components/Header"
 import HeroResort from "../components/Heroes/HeroResort"
 import Container from "../components/Container"
 import ResortTypesGrid from "../components/Grids/ResortTypesGrid"
+import GuestSpecials from "../components/GuestSpecials"
 import Footer from "../components/Footer"
 
 const Resort = ({
@@ -13,8 +14,6 @@ const Resort = ({
     wpgraphql: { communityParent, communityTypes },
   },
 }) => {
-  console.log(communityParent)
-
   return (
     <>
       <Header />
@@ -41,6 +40,11 @@ const Resort = ({
         </Box>
       )}
       <ResortTypesGrid types={communityTypes} resort={communityParent} />
+      {communityParent.communityParentMeta.guestSpecials && (
+        <GuestSpecials
+          content={communityParent.communityParentMeta.guestSpecials}
+        />
+      )}
       <Footer />
     </>
   )
@@ -59,6 +63,7 @@ export const query = graphql`
           homeRentals
           homeSales
           intro
+          guestSpecials
         }
         heroMeta {
           heroImage {

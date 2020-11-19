@@ -6,6 +6,7 @@ import HeroPage from "../components/Heroes/HeroPage"
 import Intro from "../components/Intro"
 import ResortsGrid from "../components/Grids/ResortsGrid"
 import PortalsGrid from "../components/Grids/PortalsGrid"
+import YouTubeGallery from "../components/YouTubeGallery"
 import ResortsMap from "../components/Maps/ResortsMap"
 import Footer from "../components/Footer"
 
@@ -86,6 +87,7 @@ const IndexPage = () => {
       />
       <ResortsGrid />
       <PortalsGrid />
+      <YouTubeGallery />
       <ResortsMap />
       <Footer />
     </>

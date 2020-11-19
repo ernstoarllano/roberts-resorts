@@ -53,6 +53,7 @@ const BookResorts = () => {
           wrap={["wrap", "wrap", "wrap", "nowrap"]}
           alignItems={["", "", "", "flex-end"]}
           justifyContent={["", "", "", "space-between"]}
+          mt={4}
         >
           {resorts.wpgraphql.communityParents && (
             <FormControl maxW={["full", "full", "full", "290px"]} mb={2}>

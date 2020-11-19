@@ -21,6 +21,16 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
               databaseId
               slug
               title
+              communityParents {
+                nodes {
+                  slug
+                }
+              }
+              communityTypes {
+                nodes {
+                  slug
+                }
+              }
             }
           }
         }
@@ -81,18 +91,30 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         const {
           databaseId: communityDatabaseId,
           slug: communitySlug,
+          communityParents: communityResort,
+          communityTypes: communityResortType,
         } = community.node
 
-        createPage({
-          path: `/resort/${resortSlug}/${resortTypeSlug}/${communitySlug}`,
-          component: communityTemplate,
-          context: {
-            id: communityDatabaseId,
-            currentID: communityDatabaseId,
-            resortSlug: resortSlug,
-            resortTypeSlug: resortTypeSlug,
-          },
-        })
+        if (
+          communityResort.nodes[0].slug &&
+          communityResortType.nodes[0].slug
+        ) {
+          if (
+            communityResort.nodes[0].slug === resortSlug &&
+            communityResortType.nodes[0].slug === resortTypeSlug
+          ) {
+            createPage({
+              path: `/resort/${resortSlug}/${resortTypeSlug}/${communitySlug}`,
+              component: communityTemplate,
+              context: {
+                id: communityDatabaseId,
+                currentID: communityDatabaseId,
+                resortSlug: resortSlug,
+                resortTypeSlug: resortTypeSlug,
+              },
+            })
+          }
+        }
       })
     })
   })

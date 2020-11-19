@@ -19,6 +19,9 @@ const ResortsGrid = () => {
       wpgraphql {
         page(id: "cGFnZToyMA==") {
           title
+          homeMeta {
+            resorts
+          }
         }
         communityParents {
           edges {
@@ -54,7 +57,18 @@ const ResortsGrid = () => {
     <>
       {resorts.wpgraphql.communityParents && (
         <Box as="section" py={16} bg="gray.100">
-          <Container maxW="1400px"></Container>
+          {resorts.wpgraphql.page.homeMeta.resorts && (
+            <Container maxW="1400px">
+              <Box textAlign="center">
+                <Box
+                  className="cms-content"
+                  dangerouslySetInnerHTML={{
+                    __html: resorts.wpgraphql.page.homeMeta.resorts,
+                  }}
+                />
+              </Box>
+            </Container>
+          )}
           <Container>
             <Grid
               templateColumns={["", "", "", "repeat(4,1fr)"]}
