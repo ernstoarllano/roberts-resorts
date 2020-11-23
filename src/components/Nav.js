@@ -54,13 +54,7 @@ const Nav = () => {
   return (
     <Flex direction={["", "", "", "row"]} alignItems={["", "", "", "center"]}>
       {resorts.wpgraphql.communityParents && (
-        <Menu
-          placement="bottom"
-          autoSelect={false}
-          arrowPadding={2}
-          arrowSize={10}
-          arrowShadowColor="primary.2"
-        >
+        <Menu placement="bottom" autoSelect={false}>
           {({ isOpen }) => {
             return (
               <>

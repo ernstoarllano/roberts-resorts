@@ -12,6 +12,7 @@ import {
 import Img from "gatsby-image"
 
 import Container from "../Container"
+import LogoSimple from "../Icons/LogoSimple"
 
 const ResortsGrid = () => {
   const resorts = useStaticQuery(graphql`
@@ -60,6 +61,7 @@ const ResortsGrid = () => {
           {resorts.wpgraphql.page.homeMeta.resorts && (
             <Container maxW="1400px">
               <Box textAlign="center">
+                <LogoSimple />
                 <Box
                   className="cms-content"
                   dangerouslySetInnerHTML={{

@@ -77,11 +77,14 @@ const Header = () => {
           >
             <Logo />
             {isDesktop && <Nav />}
-            {!isDesktop && (
-              <Button p={0} bg="transparent" onClick={onOpen}>
-                <HamburgerIcon w="40px" h="40px" />
-              </Button>
-            )}
+            <Button
+              display={["block", "block", "block", "none"]}
+              p={0}
+              bg="transparent"
+              onClick={onOpen}
+            >
+              <HamburgerIcon w="40px" h="40px" />
+            </Button>
           </Flex>
         </Container>
       </Box>
