@@ -1,19 +1,20 @@
 import React from "react"
-import { useMediaQuery } from "react-responsive"
 import { Box, Button } from "@chakra-ui/react"
 
 import Container from "./Container"
 
 const Intro = ({ content, image }) => {
-  const isDesktop = useMediaQuery({ minWidth: 1024 })
-  const bgImage = isDesktop ? image.introDesktop.src : image.introMobile.src
-
   return (
     <Box
       as="section"
       pt={16}
       pb={[32, 32, 32, 64]}
-      bg={`url(${bgImage})`}
+      bgImage={[
+        `url(${image.introMobile.src})`,
+        `url(${image.introMobile.src})`,
+        `url(${image.introMobile.src})`,
+        `url(${image.introDesktop.src})`,
+      ]}
       bgPosition="center"
       bgRepeat="no-repeat"
       bgSize="cover"

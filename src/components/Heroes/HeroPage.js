@@ -1,19 +1,20 @@
 import React from "react"
-import { useMediaQuery } from "react-responsive"
 import { Box } from "@chakra-ui/react"
 
 import Container from "../Container"
 import BookResorts from "../Forms/BookResorts"
 
 const HeroPage = ({ mobile, desktop, content }) => {
-  const isDesktop = useMediaQuery({ minWidth: 1024 })
-  const bgImage = isDesktop ? desktop : mobile
-
   return (
     <Box
       as="section"
       py={[16, 16, 16, 56]}
-      bg={`url(${bgImage})`}
+      bgImage={[
+        `url(${mobile})`,
+        `url(${mobile})`,
+        `url(${mobile})`,
+        `url(${desktop})`,
+      ]}
       bgPosition="center"
       bgRepeat="no-repeat"
       bgSize="cover"

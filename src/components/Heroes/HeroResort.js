@@ -15,11 +15,12 @@ const HeroResort = ({ resort }) => {
           as="section"
           position="relative"
           py={[16, 16, 16, 56]}
-          bg={`url(${
-            isDesktop
-              ? resort.heroMeta.heroImage.imageFile.childImageSharp.desktop.src
-              : resort.heroMeta.heroImage.imageFile.childImageSharp.mobile.src
-          })`}
+          bgImage={[
+            `url(${resort.heroMeta.heroImage.imageFile.childImageSharp.mobile.src})`,
+            `url(${resort.heroMeta.heroImage.imageFile.childImageSharp.mobile.src})`,
+            `url(${resort.heroMeta.heroImage.imageFile.childImageSharp.mobile.src})`,
+            `url(${resort.heroMeta.heroImage.imageFile.childImageSharp.desktop.src})`,
+          ]}
           bgPosition="center"
           bgRepeat="no-repeat"
           bgSize="cover"
