@@ -20,7 +20,7 @@ import Nav from "./Nav"
 import NavMobile from "./NavMobile"
 
 const Header = () => {
-  const isDesktop = useMediaQuery({ query: "(min-device-width: 1024px)" })
+  const isDesktop = useMediaQuery({ minWidth: 1024 })
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const btnRef = useRef()

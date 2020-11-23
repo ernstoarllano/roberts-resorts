@@ -3,5 +3,13 @@
  *
  * See: https://www.gatsbyjs.com/docs/ssr-apis/
  */
+import React from "react"
+import { ChakraProvider } from "@chakra-ui/react"
+import "fontsource-metropolis/all.css"
 
-// You can delete this file if you're not using it
+import "./src/style.css"
+import theme from "./src/theme"
+
+export const wrapRootElement = ({ element }) => (
+  <ChakraProvider theme={theme}>{element}</ChakraProvider>
+)

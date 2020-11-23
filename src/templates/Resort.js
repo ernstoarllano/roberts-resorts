@@ -70,13 +70,11 @@ export const query = graphql`
             guid
             imageFile {
               childImageSharp {
-                mobile: fluid(maxWidth: 960, maxHeight: 825, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                  ...GatsbyImageSharpFluidLimitPresentationSize
+                mobile: fixed(width: 960, height: 825, quality: 100) {
+                  ...GatsbyImageSharpFixed
                 }
-                desktop: fluid(maxWidth: 1920, maxHeight: 825, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                  ...GatsbyImageSharpFluidLimitPresentationSize
+                desktop: fixed(width: 1920, height: 825, quality: 100) {
+                  ...GatsbyImageSharpFixed
                 }
               }
             }

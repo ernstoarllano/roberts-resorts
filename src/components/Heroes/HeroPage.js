@@ -6,7 +6,7 @@ import Container from "../Container"
 import BookResorts from "../Forms/BookResorts"
 
 const HeroPage = ({ mobile, desktop, content }) => {
-  const isDesktop = useMediaQuery({ query: "(min-device-width: 1024px)" })
+  const isDesktop = useMediaQuery({ minWidth: 1024 })
   const bgImage = isDesktop ? desktop : mobile
 
   return (

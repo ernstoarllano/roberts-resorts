@@ -5,7 +5,7 @@ import { Box, Button } from "@chakra-ui/react"
 import Container from "./Container"
 
 const Intro = ({ content, image }) => {
-  const isDesktop = useMediaQuery({ query: "(min-device-width: 1024px)" })
+  const isDesktop = useMediaQuery({ minWidth: 1024 })
   const bgImage = isDesktop ? image.introDesktop.src : image.introMobile.src
 
   return (

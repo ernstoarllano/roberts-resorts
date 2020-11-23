@@ -7,8 +7,8 @@ import React from "react"
 import { ChakraProvider } from "@chakra-ui/react"
 import "fontsource-metropolis/all.css"
 
-import theme from "./theme"
-import "./style.css"
+import "./src/style.css"
+import theme from "./src/theme"
 
 export const wrapRootElement = ({ element }) => (
   <ChakraProvider theme={theme}>{element}</ChakraProvider>

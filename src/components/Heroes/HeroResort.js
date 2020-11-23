@@ -6,7 +6,7 @@ import Container from "../Container"
 import BookResort from "../Forms/BookResort"
 
 const HeroResort = ({ resort }) => {
-  const isDesktop = useMediaQuery({ query: "(min-device-width: 1024px)" })
+  const isDesktop = useMediaQuery({ minWidth: 1024 })
 
   return (
     <>

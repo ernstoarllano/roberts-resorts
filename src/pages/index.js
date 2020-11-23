@@ -25,21 +25,11 @@ const IndexPage = () => {
               guid
               imageFile {
                 childImageSharp {
-                  introMobile: fluid(
-                    maxWidth: 960
-                    maxHeight: 663
-                    quality: 100
-                  ) {
-                    ...GatsbyImageSharpFluid
-                    ...GatsbyImageSharpFluidLimitPresentationSize
+                  introMobile: fixed(width: 960, height: 663, quality: 100) {
+                    ...GatsbyImageSharpFixed
                   }
-                  introDesktop: fluid(
-                    maxWidth: 1920
-                    maxHeight: 663
-                    quality: 100
-                  ) {
-                    ...GatsbyImageSharpFluid
-                    ...GatsbyImageSharpFluidLimitPresentationSize
+                  introDesktop: fixed(width: 1920, height: 663, quality: 100) {
+                    ...GatsbyImageSharpFixed
                   }
                 }
               }
@@ -51,13 +41,11 @@ const IndexPage = () => {
               guid
               imageFile {
                 childImageSharp {
-                  mobile: fluid(maxWidth: 960, maxHeight: 825, quality: 100) {
-                    ...GatsbyImageSharpFluid
-                    ...GatsbyImageSharpFluidLimitPresentationSize
+                  mobile: fixed(width: 960, height: 825, quality: 100) {
+                    ...GatsbyImageSharpFixed
                   }
-                  desktop: fluid(maxWidth: 1920, maxHeight: 825, quality: 100) {
-                    ...GatsbyImageSharpFluid
-                    ...GatsbyImageSharpFluidLimitPresentationSize
+                  desktop: fixed(width: 1920, height: 825, quality: 100) {
+                    ...GatsbyImageSharpFixed
                   }
                 }
               }
