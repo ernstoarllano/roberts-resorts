@@ -32,7 +32,7 @@ module.exports = {
       options: {
         typeName: `WPGraphQL`,
         fieldName: `wpgraphql`,
-        url: `http://roberts.test/graphql/`,
+        url: `https://robertsresorts.bigrigmedia.com/graphql/`,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

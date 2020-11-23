@@ -3,7 +3,7 @@ import { Box, Link } from "@chakra-ui/react"
 
 const Logo = () => {
   return (
-    <Box w="full" maxW="243px">
+    <Box w="full" maxW="243px" py={4}>
       <Link href="/">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 522 236">
           <g fill="none" fillRule="evenodd">

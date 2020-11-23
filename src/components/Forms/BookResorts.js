@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import {
   Box,
@@ -14,6 +14,10 @@ import {
 import Container from "../Container"
 
 const BookResorts = () => {
+  const [button, setButton] = useState({
+    type: "reserve",
+  })
+
   const resorts = useStaticQuery(graphql`
     query GetBookingResorts {
       wpgraphql {
@@ -40,9 +44,21 @@ const BookResorts = () => {
     const checkOut = e.target["checkOut"].value
     const adults = e.target["adults"].value
 
-    window.open(
-      `https://www.campspot.com/book/${resort}/search/${checkIn}/${checkOut}/guests${adults},0,0`
-    )
+    if (button.type === "reserve") {
+      window.open(
+        `https://www.campspot.com/book/${resort}/search/${checkIn}/${checkOut}/guests${adults},0,0`
+      )
+    } else {
+      const resortSlug =
+        e.target["resort"].options[e.target["resort"].selectedIndex].dataset
+          .slug
+
+      window.location.replace(`/resort/${resortSlug}`)
+    }
+  }
+
+  const onClick = e => {
+    setButton({ ...button, type: e.target.name })
   }
 
   return (
@@ -81,7 +97,7 @@ const BookResorts = () => {
                   } = resort.node
 
                   return (
-                    <option key={slug} value={campspotSlug}>
+                    <option key={slug} value={campspotSlug} data-slug={slug}>
                       {name}
                     </option>
                   )
@@ -108,7 +124,7 @@ const BookResorts = () => {
               name="checkIn"
               bg="white"
               borderRadius={0}
-              isRequired={true}
+              isRequired={button.type === "reserve" ? true : false}
             />
           </FormControl>
           <FormControl
@@ -130,7 +146,7 @@ const BookResorts = () => {
               name="checkOut"
               bg="white"
               borderRadius={0}
-              isRequired={true}
+              isRequired={button.type === "reserve" ? true : false}
             />
           </FormControl>
           <FormControl maxW={["full", "full", "full", "290px"]} mb={2}>
@@ -148,7 +164,7 @@ const BookResorts = () => {
               name="adults"
               bg="white"
               borderRadius={0}
-              isRequired={true}
+              isRequired={button.type === "reserve" ? true : false}
             >
               <option value="2">2</option>
             </Select>
@@ -163,6 +179,7 @@ const BookResorts = () => {
         >
           <Stack direction={["column", "column", "column", "row"]}>
             <Button
+              type="submit"
               minW={["full", "full", "full", "270px"]}
               fontWeight="600"
               color="white"
@@ -170,6 +187,8 @@ const BookResorts = () => {
               textShadow="1px 1px 0 rgba(0,0,0,0.4)"
               bg="primary.2"
               borderRadius={0}
+              name="explore"
+              onClick={onClick}
             >
               Explore Destination
             </Button>
@@ -182,6 +201,8 @@ const BookResorts = () => {
               textShadow="1px 1px 0 rgba(0,0,0,0.4)"
               bg="primary.3"
               borderRadius={0}
+              name="reserve"
+              onClick={onClick}
             >
               Reserve Now
             </Button>

@@ -1,23 +1,11 @@
 import React from "react"
-import { useMediaQuery } from "react-responsive"
 import { Box, Button } from "@chakra-ui/react"
 
 import Container from "./Container"
 
-const Intro = ({ content, image }) => {
-  const isDesktop = useMediaQuery({ query: "(min-device-width: 1024px)" })
-  const bgImage = isDesktop ? image.introDesktop.src : image.introMobile.src
-
+const Promotions = ({ content }) => {
   return (
-    <Box
-      as="section"
-      pt={16}
-      pb={[32, 32, 32, 64]}
-      bg={`url(${bgImage})`}
-      bgPosition="center"
-      bgRepeat="no-repeat"
-      bgSize="cover"
-    >
+    <Box as="section" py={16}>
       <Container>
         <Box textAlign="center">
           <Box
@@ -27,14 +15,16 @@ const Intro = ({ content, image }) => {
             }}
           />
           <Button
-            mt={5}
+            minW={["", "", "", "270px"]}
+            mt={4}
+            fontWeight="600"
             color="white"
             textTransform="uppercase"
             textShadow="1px 1px 0 rgba(0,0,0,0.4)"
             bg="primary.2"
             borderRadius={0}
           >
-            The Roberts Difference
+            Current Specials & Promotions
           </Button>
         </Box>
       </Container>
@@ -42,4 +32,4 @@ const Intro = ({ content, image }) => {
   )
 }
 
-export default Intro
+export default Promotions

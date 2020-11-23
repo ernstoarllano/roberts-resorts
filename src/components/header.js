@@ -17,6 +17,7 @@ import { HamburgerIcon } from "@chakra-ui/icons"
 import Container from "./Container"
 import Logo from "./Icons/Logo"
 import Nav from "./Nav"
+import NavMobile from "./NavMobile"
 
 const Header = () => {
   const isDesktop = useMediaQuery({ query: "(min-device-width: 1024px)" })
@@ -66,12 +67,12 @@ const Header = () => {
           </Flex>
         </Container>
       </Box>
-      <Box py={4} bg="white">
+      <Box py={[4, 4, 4, 0]} bg="white">
         <Container>
           <Flex
             flexDirection="row"
             flexWrap="nowrap"
-            alignItems="center"
+            alignItems={["center", "center", "center", "stretch"]}
             justifyContent="space-between"
           >
             <Logo />
@@ -94,7 +95,7 @@ const Header = () => {
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerBody>
-              <Nav />
+              <NavMobile />
             </DrawerBody>
           </DrawerContent>
         </DrawerOverlay>

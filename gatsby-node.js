@@ -12,6 +12,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const communityTemplate = path.resolve("./src/templates/Community.js")
   const resortTemplate = path.resolve("./src/templates/Resort.js")
   const resortTypeTemplate = path.resolve("./src/templates/ResortType.js")
+  const statusTypeTemplate = path.resolve("./src/templates/StatusType.js")
+
   const result = await graphql(`
     {
       wpgraphql {
@@ -51,6 +53,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             }
           }
         }
+        communityStatuses {
+          edges {
+            node {
+              name
+              slug
+            }
+          }
+        }
       }
     }
   `)
@@ -62,6 +72,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const resorts = result.data.wpgraphql.communityParents.edges
   const resortTypes = result.data.wpgraphql.communityTypes.edges
   const communities = result.data.wpgraphql.communities.edges
+  const statusTypes = result.data.wpgraphql.communityStatuses.edges
 
   resorts.forEach(resort => {
     const { databaseId, slug: resortSlug } = resort.node
@@ -86,6 +97,23 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           resortTypeSlug: resortTypeSlug,
         },
       })
+
+      if (resortTypeSlug === "homes-for-sale") {
+        statusTypes.forEach(statusType => {
+          const { slug: statusTypeSlug } = statusType.node
+
+          createPage({
+            path: `/resort/${resortSlug}/${resortTypeSlug}/${statusTypeSlug}`,
+            component: statusTypeTemplate,
+            context: {
+              id: databaseId,
+              resortSlug: resortSlug,
+              resortTypeSlug: resortTypeSlug,
+              statusTypeSlug: statusTypeSlug,
+            },
+          })
+        })
+      }
 
       communities.forEach(community => {
         const {

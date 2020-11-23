@@ -7,6 +7,7 @@ import Intro from "../components/Intro"
 import ResortsGrid from "../components/Grids/ResortsGrid"
 import PortalsGrid from "../components/Grids/PortalsGrid"
 import YouTubeGallery from "../components/YouTubeGallery"
+import Promotions from "../components/Promotions"
 import ResortsMap from "../components/Maps/ResortsMap"
 import Footer from "../components/Footer"
 
@@ -16,6 +17,9 @@ const IndexPage = () => {
       wpgraphql {
         page(id: "cGFnZToyMA==") {
           content
+          homeMeta {
+            promotions
+          }
           pageMeta {
             introImage {
               guid
@@ -88,6 +92,7 @@ const IndexPage = () => {
       <ResortsGrid />
       <PortalsGrid />
       <YouTubeGallery />
+      <Promotions content={home.wpgraphql.page.homeMeta.promotions} />
       <ResortsMap />
       <Footer />
     </>

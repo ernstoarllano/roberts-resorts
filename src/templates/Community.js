@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Box, Heading, Flex, Grid } from "@chakra-ui/react"
+import { Box, Heading, Flex, Grid, List, ListItem } from "@chakra-ui/react"
 
 import Header from "../components/Header"
 import Container from "../components/Container"
@@ -53,7 +53,88 @@ const Community = ({
             gap={[0, 0, 0, 4]}
             mt={16}
           >
-            <Box as="main"></Box>
+            <Box as="main">
+              <List fontSize="21px">
+                {community.communityMeta.price && (
+                  <ListItem
+                    mb={2}
+                    pb={2}
+                    borderBottomWidth={1}
+                    borderStyle="solid"
+                    borderColor="primary.7"
+                  >
+                    <Box as="span" fontWeight="700">
+                      Price:
+                    </Box>{" "}
+                    {community.communityMeta.price}
+                  </ListItem>
+                )}
+                {community.communityParents.edges[0] && (
+                  <ListItem
+                    mb={2}
+                    pb={2}
+                    borderBottomWidth={1}
+                    borderStyle="solid"
+                    borderColor="primary.7"
+                  >
+                    <Box as="span" fontWeight="700">
+                      Community:
+                    </Box>{" "}
+                    {community.communityParents.edges[0].node.name}
+                  </ListItem>
+                )}
+                {community.communityStatuses.edges[0] && (
+                  <ListItem
+                    mb={2}
+                    pb={2}
+                    borderBottomWidth={1}
+                    borderStyle="solid"
+                    borderColor="primary.7"
+                  >
+                    <Box as="span" fontWeight="700">
+                      Status:
+                    </Box>{" "}
+                    {community.communityStatuses.edges[0].node.name}
+                  </ListItem>
+                )}
+                {community.communityMeta.bedrooms &&
+                  community.communityMeta.bathrooms && (
+                    <ListItem
+                      mb={2}
+                      pb={2}
+                      borderBottomWidth={1}
+                      borderStyle="solid"
+                      borderColor="primary.7"
+                    >
+                      <Box as="span" fontWeight="700">
+                        Bd/Ba:
+                      </Box>{" "}
+                      {community.communityMeta.bedrooms}/
+                      {community.communityMeta.bathrooms}
+                    </ListItem>
+                  )}
+                {community.communityMeta.squareFootage && (
+                  <ListItem
+                    mb={2}
+                    pb={2}
+                    borderBottomWidth={1}
+                    borderStyle="solid"
+                    borderColor="primary.7"
+                  >
+                    <Box as="span" fontWeight="700">
+                      Sq. Ft:
+                    </Box>{" "}
+                    {community.communityMeta.squareFootage}
+                  </ListItem>
+                )}
+              </List>
+              <Box
+                className="cms-content"
+                dangerouslySetInnerHTML={{
+                  __html: community.content,
+                }}
+              />
+            </Box>
             <Box as="aside">
               {community.communityMeta.agent && (
                 <>
@@ -62,7 +143,6 @@ const Community = ({
                       {community.communityMeta.agent}
                     </Heading>
                   </Box>
-                  <Box p={8} bg="primary.1"></Box>
                 </>
               )}
             </Box>
@@ -90,6 +170,7 @@ export const query = graphql`
   ) {
     wpgraphql {
       community(id: $id, idType: DATABASE_ID) {
+        content
         slug
         title
         communityMeta {
@@ -98,6 +179,21 @@ export const query = graphql`
           bathrooms
           lotNumber
           agent
+          squareFootage
+        }
+        communityParents {
+          edges {
+            node {
+              name
+            }
+          }
+        }
+        communityStatuses {
+          edges {
+            node {
+              name
+            }
+          }
         }
       }
       communities(
@@ -131,6 +227,13 @@ export const query = graphql`
               bedrooms
               lotNumber
               price
+            }
+            communityStatuses {
+              edges {
+                node {
+                  name
+                }
+              }
             }
             featuredImage {
               node {

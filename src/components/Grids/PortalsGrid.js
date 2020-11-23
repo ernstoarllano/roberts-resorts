@@ -36,10 +36,7 @@ const PortalsGrid = () => {
     <>
       {types.wpgraphql.communityTypes && (
         <Box as="section">
-          <Grid
-            gridTemplateColumns={["", "", "", "repeat(3,1fr)"]}
-            gap={[0, 0, 0, 1]}
-          >
+          <Grid gridTemplateColumns={["", "", "", "repeat(3,1fr)"]} gap={1}>
             {types.wpgraphql.communityTypes.edges.map(type => {
               const { communityTypeMeta, id, name, slug } = type.node
 
@@ -49,7 +46,7 @@ const PortalsGrid = () => {
                   flexWrap="wrap"
                   alignItems="center"
                   justifyContent="center"
-                  py={40}
+                  py={[28, 28, 28, 40]}
                   bg="gray.50"
                   bgImage={`url(${communityTypeMeta.typeImage.imageFile.childImageSharp.fluid.src})`}
                   bgPosition="center"

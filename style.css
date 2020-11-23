@@ -26,8 +26,9 @@ img {
   }
 
   .cms-content h1 {
-    font-size: 35px;
-    letter-spacing: 3px;
+    font-size: 35px !important;
+    line-height: 42px !important;
+    letter-spacing: 3px !important;
   }
 }
 

@@ -1,56 +1,27 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Box } from "@chakra-ui/react"
 
 import Header from "../components/Header"
 import HeroResort from "../components/Heroes/HeroResort"
-import Container from "../components/Container"
 import StatusFilter from "../components/Forms/StatusFilter"
 import CommunitiesGrid from "../components/Grids/CommunitiesGrid"
 import Footer from "../components/Footer"
 
-const Resort = ({
+const StatusType = ({
   data: {
     wpgraphql: { communities, communityParent },
   },
-  pageContext: { resortSlug, resortTypeSlug },
+  pageContext: { resortSlug, resortTypeSlug, statusTypeSlug },
 }) => {
-  let content
-
-  switch (resortTypeSlug) {
-    case "homes-for-sale":
-      content = communityParent.communityParentMeta.homesForSaleContent
-      break
-    case "rv-lots-for-sale":
-      content = communityParent.communityParentMeta.rvLotsForSaleContent
-      break
-    case "vacation-rentals":
-      content = communityParent.communityParentMeta.vacationRentalsContent
-      break
-    default:
-      content = null
-      break
-  }
-
   return (
     <>
       <Header />
       <HeroResort resort={communityParent} />
-      {content && (
-        <Box as="section" pt={16} pb={8}>
-          <Container>
-            <Box textAlign="center">
-              <Box
-                className="cms-content"
-                dangerouslySetInnerHTML={{
-                  __html: content,
-                }}
-              />
-            </Box>
-          </Container>
-        </Box>
-      )}
-      <StatusFilter resort={resortSlug} resortType={resortTypeSlug} />
+      <StatusFilter
+        resort={resortSlug}
+        resortType={resortTypeSlug}
+        status={statusTypeSlug}
+      />
       <CommunitiesGrid
         types={communities}
         resortSlug={resortSlug}
@@ -62,10 +33,11 @@ const Resort = ({
 }
 
 export const query = graphql`
-  query GetResortType(
+  query GetResortStatus(
     $id: ID!
     $resortSlug: [String!]!
     $resortTypeSlug: [String!]!
+    $statusTypeSlug: [String!]!
   ) {
     wpgraphql {
       communities(
@@ -84,6 +56,12 @@ export const query = graphql`
                 operator: IN
                 field: SLUG
                 taxonomy: COMMUNITYTYPE
+              }
+              {
+                terms: $statusTypeSlug
+                operator: IN
+                field: SLUG
+                taxonomy: COMMUNITYSTATUS
               }
             ]
           }
@@ -134,9 +112,6 @@ export const query = graphql`
           homeRentals
           homeSales
           campspotSlug
-          homesForSaleContent
-          rvLotsForSaleContent
-          vacationRentalsContent
         }
         heroMeta {
           heroImage {
@@ -160,4 +135,4 @@ export const query = graphql`
   }
 `
 
-export default Resort
+export default StatusType

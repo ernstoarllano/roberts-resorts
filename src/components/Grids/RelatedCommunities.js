@@ -5,8 +5,6 @@ import Img from "gatsby-image"
 import Container from "../Container"
 
 const RelatedCommunities = ({ communities, resortSlug, typeSlug }) => {
-  console.log(resortSlug, typeSlug)
-
   return (
     <Box as="section" py={16} bg="gray.50">
       <Container>
@@ -19,18 +17,52 @@ const RelatedCommunities = ({ communities, resortSlug, typeSlug }) => {
           mt={16}
         >
           {communities.edges.map(community => {
-            const { title, slug } = community.node
+            const { title, slug, communityStatuses } = community.node
+
+            let color
+
+            switch (communityStatuses.edges[0].node.name) {
+              case "Available":
+                color = "rgba(57,151,0,0.85)"
+                break
+              case "Pending":
+                color = "rgba(247,184,0,0.85)"
+                break
+              case "Sold":
+                color = "rgba(192,0,0,0.85)"
+                break
+              default:
+                color = "#000000"
+                break
+            }
 
             return (
               <Box key={slug} bg="white" boxShadow="md">
                 {community.node.featuredImage && (
-                  <Box position="relative">
+                  <Box position="relative" overflow="hidden">
                     <Img
                       fluid={
                         community.node.featuredImage.node.imageFile
                           .childImageSharp.fluid
                       }
                     />
+                    <Box
+                      position="absolute"
+                      top="20px"
+                      left="-80px"
+                      width="300px"
+                      px={4}
+                      py={2}
+                      fontWeight="600"
+                      color="white"
+                      textAlign="center"
+                      textShadow="1px 1px 0 rgba(0,0,0,0.4)"
+                      textTransform="uppercase"
+                      transform="rotate(-30deg)"
+                      bg={color}
+                    >
+                      {communityStatuses.edges[0].node.name}
+                    </Box>
                   </Box>
                 )}
                 <Box position="relative" px={5} pt={8} pb={10}>
