@@ -107,15 +107,51 @@ const NavMobile = () => {
           }}
         </Menu>
       )}
-      <Menu placement="bottom-end" autoSelect={false}>
-        <MenuButton
-          mb={4}
-          fontWeight="600"
-          textAlign="left"
-          textTransform="uppercase"
-        >
-          Homes & Lots for Sale
-        </MenuButton>
+      <Menu orientation="vertical" autoSelect={false} matchWidth={true}>
+        {({ isOpen }) => {
+          return (
+            <>
+              <MenuButton
+                as={Button}
+                mb={4}
+                px={0}
+                fontWeight="600"
+                textAlign="left"
+                textTransform="uppercase"
+                rightIcon={
+                  isOpen ? (
+                    <ChevronUpIcon fontSize="21px" color="primary.2" />
+                  ) : (
+                    <ChevronDownIcon fontSize="21px" color="primary.2" />
+                  )
+                }
+                bg="transparent"
+                borderRadius={0}
+                _hover={{
+                  backgroundColor: "transparent",
+                }}
+                _active={{
+                  backgroundColor: "transparent",
+                }}
+                _focus={{
+                  outline: "none",
+                }}
+              >
+                Homes & Lots for Sale
+              </MenuButton>
+              <MenuList
+                mt="-8px"
+                p={0}
+                border={0}
+                borderRadius={0}
+                boxShadow="none"
+              >
+                <MenuItem>Home Listings</MenuItem>
+                <MenuItem>Lot Listings</MenuItem>
+              </MenuList>
+            </>
+          )
+        }}
       </Menu>
       <Menu>
         <MenuButton

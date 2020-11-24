@@ -61,6 +61,7 @@ const Nav = () => {
                 <MenuButton
                   as={Button}
                   h="full"
+                  px={0}
                   fontWeight="600"
                   textTransform="uppercase"
                   rightIcon={
@@ -85,6 +86,7 @@ const Nav = () => {
                   RV Resorts
                 </MenuButton>
                 <MenuList
+                  minW="50rem"
                   mt="-8px"
                   p={6}
                   borderTop={0}
@@ -164,6 +166,7 @@ const Nav = () => {
           as={Button}
           h="full"
           ml={10}
+          px={0}
           fontWeight="600"
           textTransform="uppercase"
           rightIcon={<ChevronDownIcon fontSize="21px" color="primary.2" />}
@@ -181,6 +184,10 @@ const Nav = () => {
         >
           Homes & Lots for Sale
         </MenuButton>
+        <MenuList mt="-8px" border={0} borderRadius={0}>
+          <MenuItem>Home Listings</MenuItem>
+          <MenuItem>Lot Listings</MenuItem>
+        </MenuList>
       </Menu>
       <Menu placement="bottom-end" autoSelect={false}>
         <MenuButton
