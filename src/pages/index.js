@@ -32,10 +32,10 @@ const IndexPage = () => {
               guid
               imageFile {
                 childImageSharp {
-                  introMobile: fixed(width: 960, height: 663, quality: 100) {
+                  introMobile: fixed(width: 960, height: 663, quality: 70) {
                     ...GatsbyImageSharpFixed_withWebp
                   }
-                  introDesktop: fixed(width: 1920, height: 663, quality: 100) {
+                  introDesktop: fixed(width: 1920, height: 663, quality: 90) {
                     ...GatsbyImageSharpFixed_withWebp
                   }
                 }
@@ -48,10 +48,10 @@ const IndexPage = () => {
               guid
               imageFile {
                 childImageSharp {
-                  mobile: fixed(width: 960, height: 825, quality: 100) {
+                  mobile: fixed(width: 960, height: 825, quality: 70) {
                     ...GatsbyImageSharpFixed_withWebp
                   }
-                  desktop: fixed(width: 1920, height: 825, quality: 100) {
+                  desktop: fixed(width: 1920, height: 825, quality: 90) {
                     ...GatsbyImageSharpFixed_withWebp
                   }
                 }
