@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 
+import Seo from "../components/Seo"
 import Header from "../components/Header"
 import HeroResort from "../components/Heroes/HeroResort"
 import StatusFilter from "../components/Forms/StatusFilter"
@@ -15,6 +16,7 @@ const StatusType = ({
 }) => {
   return (
     <>
+      <Seo />
       <Header />
       <HeroResort resort={communityParent} />
       <StatusFilter

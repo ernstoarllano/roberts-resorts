@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Box, Link } from "@chakra-ui/react"
 
+import Seo from "../components/Seo"
 import Header from "../components/Header"
 import HeroResort from "../components/Heroes/HeroResort"
 import Container from "../components/Container"
@@ -16,6 +17,7 @@ const Resort = ({
 }) => {
   return (
     <>
+      <Seo />
       <Header />
       <HeroResort resort={communityParent} />
       {communityParent.communityParentMeta.intro && (

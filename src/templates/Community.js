@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import { Box, Heading, Flex, Grid, List, ListItem } from "@chakra-ui/react"
 
+import Seo from "../components/Seo"
 import Header from "../components/Header"
 import Container from "../components/Container"
 import RelatedCommunities from "../components/Grids/RelatedCommunities"
@@ -15,6 +16,7 @@ const Community = ({
 }) => {
   return (
     <>
+      <Seo />
       <Header />
       <Box as="section" py={16}>
         <Container>

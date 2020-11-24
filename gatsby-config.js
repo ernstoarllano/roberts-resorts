@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Roberts Resorts`,
-    description: ``,
+    description: `Roberts Resorts offers affordable luxury RV resorts, homes, and amenities in award-winning communities across Alabama, Arizona, California, and Texas.`,
     author: `@ernstoarllano`,
   },
   plugins: [

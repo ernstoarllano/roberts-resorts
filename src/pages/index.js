@@ -1,6 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
+import Seo from "../components/Seo"
 import Header from "../components/Header"
 import HeroPage from "../components/Heroes/HeroPage"
 import Intro from "../components/Intro"
@@ -15,8 +16,14 @@ const IndexPage = () => {
   const home = useStaticQuery(graphql`
     query GetHome {
       wpgraphql {
-        page(id: "cGFnZToyMA==") {
+        page(id: 20, idType: DATABASE_ID) {
           content
+          seo {
+            metaDescription
+            metaTitle
+            openGraphDescription
+            openGraphTitle
+          }
           homeMeta {
             promotions
           }
@@ -65,6 +72,12 @@ const IndexPage = () => {
 
   return (
     <>
+      <Seo
+        title={home.wpgraphql.page.seo.metaTitle}
+        description={home.wpgraphql.page.seo.metaDescription}
+        openGraphTitle={home.wpgraphql.page.seo.openGraphTitle}
+        openGraphDescription={home.wpgraphql.page.seo.openGraphDescription}
+      />
       <Header />
       <HeroPage
         mobile={mobile.src}
