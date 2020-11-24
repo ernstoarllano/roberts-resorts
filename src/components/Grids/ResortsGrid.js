@@ -40,7 +40,7 @@ const ResortsGrid = () => {
                   imageFile {
                     childImageSharp {
                       fluid(maxWidth: 732, maxHeight: 400, quality: 100) {
-                        ...GatsbyImageSharpFluid
+                        ...GatsbyImageSharpFluid_withWebp
                         ...GatsbyImageSharpFluidLimitPresentationSize
                       }
                     }

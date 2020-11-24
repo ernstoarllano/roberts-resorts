@@ -243,7 +243,7 @@ export const query = graphql`
                 imageFile {
                   childImageSharp {
                     fluid(maxWidth: 970, maxHeight: 530, quality: 100) {
-                      ...GatsbyImageSharpFluid
+                      ...GatsbyImageSharpFluid_withWebp
                       ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }

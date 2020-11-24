@@ -96,7 +96,7 @@ export const query = graphql`
                 imageFile {
                   childImageSharp {
                     fluid(maxWidth: 970, maxHeight: 530, quality: 100) {
-                      ...GatsbyImageSharpFluid
+                      ...GatsbyImageSharpFluid_withWebp
                       ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
@@ -121,10 +121,10 @@ export const query = graphql`
             imageFile {
               childImageSharp {
                 mobile: fixed(width: 960, height: 825, quality: 100) {
-                  ...GatsbyImageSharpFixed
+                  ...GatsbyImageSharpFixed_withWebp
                 }
                 desktop: fixed(width: 1920, height: 825, quality: 100) {
-                  ...GatsbyImageSharpFixed
+                  ...GatsbyImageSharpFixed_withWebp
                 }
               }
             }

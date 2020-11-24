@@ -15,7 +15,7 @@ const PortalsGrid = () => {
                   imageFile {
                     childImageSharp {
                       fluid(maxWidth: 636, maxHeight: 550, quality: 100) {
-                        ...GatsbyImageSharpFluid
+                        ...GatsbyImageSharpFluid_withWebp
                         ...GatsbyImageSharpFluidLimitPresentationSize
                       }
                     }

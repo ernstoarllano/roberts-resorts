@@ -33,7 +33,7 @@ const Nav = () => {
                   imageFile {
                     childImageSharp {
                       fluid(maxWidth: 230, maxHeight: 165, quality: 100) {
-                        ...GatsbyImageSharpFluid
+                        ...GatsbyImageSharpFluid_withWebp
                         ...GatsbyImageSharpFluidLimitPresentationSize
                       }
                     }
